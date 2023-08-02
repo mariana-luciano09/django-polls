@@ -1,9 +1,15 @@
-{% if latest_question_list %}
+{% extends "polls/base.html" %}
+
+{% block title %}Página Inicial{% endblock title %}
+
+{% block content %}
+    {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+        <li><a href="/enquetes/{{ question.id }}/">{{ question.question_text }}</a></li>
     {% endfor %}
     </ul>
-{% else %}
+    {% else %}
     <p>Nenhuma enquete cadastrada.</p>
-{% endif %}
+    {% endif %}
+{% endblock content %}
