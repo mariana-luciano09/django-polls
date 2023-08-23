@@ -1,4 +1,3 @@
-
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from .models import Question
@@ -19,3 +18,11 @@ def results(request, question_id):
 
 def vote(request, question_id):
     return HttpResponse(f"Você vai votar na pergunta de número {question_id}")
+
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
+
+class QuestionCreateView(CreateView):
+    model = Question
+    fields = ('question_text', 'pub_date')
+    success_url = reverse_lazy('index')

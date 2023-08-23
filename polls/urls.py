@@ -7,6 +7,10 @@ urlpatterns = [
 
     path("<int:question_id>/resultados/", views.results, name="results"),
 
-    path("<int:question_id>/votar/", views.vote, name="vote")
+    path("<int:question_id>/votar/", views.vote, name="vote"),
+
+    path('cadastrar',
+         views.QuestionCreateView.as_view(),
+         name="question-create")
 ]
 
