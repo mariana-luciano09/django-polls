@@ -7,5 +7,9 @@ class AccountSignupForm(forms.ModelForm):
         widget=forms.PasswordInput())
 
     class Meta:
-        model = User 
-        fields = ('username', 'email', 'password', ) 
+        model = User
+        fields = ('username', 'email', 'data_nascimento', 'cpf', 'password', )
+        widgets = {'data_nascimento': forms.widgets.DateInput(
+        attrs={'type': 'date', 'required': 'required'}
+        ),
+    }
