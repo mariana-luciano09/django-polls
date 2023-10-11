@@ -19,5 +19,11 @@ urlpatterns = [
 
     path('<int:pk>/deletar', views.QuestionDeleteView.as_view(), name='question-delete'),
 
-    path('<int:pk>/atualizar', views.QuestionUpdateView.as_view(), name = 'question-update')
+    path('<int:pk>/atualizar', views.QuestionUpdateView.as_view(), name = 'question-update'),
+
+    path('pergunta/<int:pk>/alternativa/add', views.ChoiceCreateView.as_view(), name="choice_add"),
+    
+    path('alternativa/<int:pk>/edit', views.ChoiceUpdateView.as_view(), name="choice_edit"),
+    
+    path('alternativa/<int:pk>/delete', views.ChoiceDeleteView.as_view(), name="choice_delete")
 ]
