@@ -18,7 +18,9 @@
         <header>
             <div class="row">
                 <div class="col">
-                    <h1>Bichinhos</h1>
+                    <br>
+                    <h1>Bichinhos S2</h1>
+                    <br>
                     <ul>
                         {% if user.is_authenticated%}
                             <li><a class="p-2 text-dark" href="{% url 'account_edit' pk=user.pk %}">Minha conta</a></li>
@@ -31,9 +33,14 @@
                 </div>
             </div>
 
+            <br>
+            <br>
+
             <div class="row">
                 <div class = "col">
                     <img src="{% static 'polls/img/fundo.jpg' %}" width="800px">
+                    <br>
+                    <br>
                 </div>
             </div>
         </header>

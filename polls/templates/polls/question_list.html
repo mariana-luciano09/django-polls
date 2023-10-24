@@ -1,7 +1,8 @@
 {% extends 'polls/base.html' %}
 
 {% block content %}
-    <h1>Listar Enquetes</h1>
+    <h1>Lista de Enquetes</h1>
+    <br>
 
     <ul>
         {% for question in questions %}
@@ -11,6 +12,7 @@
                 </a>
             </li>
         {% endfor %}
+        <br>
     </ul>
 
     <a href="{% url 'question-create' %}">Criar uma nova enquete</a>
