@@ -27,7 +27,7 @@ from django.views.generic import CreateView, ListView, DetailView, DeleteView, U
 from django.urls import reverse_lazy
 
 
-class QuestionCreateView(CreateView):
+class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
     fields = ('question_text',)
     success_url = reverse_lazy('question-list')
@@ -52,6 +52,7 @@ class QuestionDeleteView(LoginRequiredMixin, DeleteView):
     sucess_message = "Enquete excluída com sucesso."
     
     def form_valid(self, form):
+        form.instance.author = self.request.user
         messages.success(self.request, self.sucess_message)
         return super().form_valid(form)
 
