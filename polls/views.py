@@ -46,7 +46,7 @@ class QuestionDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(QuestionDetailView, self).get_context_data(**kwargs)
-        votes = Choice.objects.filter(question=context['question']).aggregate(total=sum('votes')) or 0
+        votes = Choice.objects.filter(question=context['question']).aggregate(total=Sum('votes')) or 0
         context['total_votes'] = votes.get('total')
 
         return context
