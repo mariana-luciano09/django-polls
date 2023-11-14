@@ -9,4 +9,3 @@ class CustomUser(AbstractUser):
         default=None,
         null=True
 )
-
