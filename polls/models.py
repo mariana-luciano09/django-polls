@@ -33,13 +33,14 @@ class Choice(models.Model):
     def __str__(self):
         return self.choice_text
     
-    def save(self, user, *args, **kwargs):
-        question_user = QuestionUser.objects.filter(user=user, question=self.question).count()
-        if question_user > 0:
-            raise ValidationError('Não é permitido votar mais de uma vez')
+    def save(self, user=None, *args, **kwargs):
+        if self.id is not None and user is not None:
+            question_user = QuestionUser.objects.filter(user=user, question=self.question).count()
+            if question_user > 0:
+                raise ValidationError('Não é permitido votar mais de uma vez')
 
-        question_user = QuestionUser.objects.create(user=user, question=self.question)
-        question_user.save()
+            question_user = QuestionUser.objects.create(user=user, question=self.question)
+            question_user.save()
 
         super().save(*args, **kwargs)
         

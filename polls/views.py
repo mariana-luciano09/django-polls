@@ -66,7 +66,6 @@ class QuestionDeleteView(LoginRequiredMixin, DeleteView):
     sucess_message = "Enquete excluída com sucesso."
     
     def form_valid(self, form):
-        form.instance.author = self.request.user
         messages.success(self.request, self.sucess_message)
         return super().form_valid(form)
 
@@ -90,7 +89,7 @@ class QuestionUpdateView(UpdateView):
         return context
     
     def form_valid(self, request, *args, **kwargs):
-        messages.sucess(self.request, self.success_message)
+        messages.success(self.request, self.success_message)
         return super(QuestionUpdateView, self).form_valid(request, *args, **kwargs)
 
 
@@ -102,13 +101,13 @@ class ChoiceCreateView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         self.question = get_object_or_404(Question, pk=self.kwargs.get('pk'))
-        return super(ChoiceCreateView, self).dispatch( request, *args, **kwargs)
+        return super(ChoiceCreateView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         question = get_object_or_404(Question, pk=self.kwargs.get('pk'))
 
         context = super(ChoiceCreateView, self).get_context_data(**kwargs)
-        context ['form_title'] = 'Alternativa para: {question.question_text}'
+        context ['form_title'] = f'Alternativa para: {question.question_text}'
     
         return context
 
@@ -119,7 +118,7 @@ class ChoiceCreateView(CreateView):
 
     def get_success_url(self, *args, **kwargs):
         question_id = self.kwargs.get('pk')
-        return reverse_lazy('poll_edit', kwargs = {'pk': question_id})
+        return reverse_lazy('question-update', kwargs = {'pk': question_id})
 
 
 class ChoiceUpdateView(UpdateView):
