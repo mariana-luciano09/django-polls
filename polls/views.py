@@ -140,7 +140,7 @@ class ChoiceUpdateView(UpdateView):
 
     def get_success_url(self, *args, **kwargs):
         question_id = self.object.question.id
-        return reverse_lazy('poll_edit', kwargs = {'pk': question_id})
+        return reverse_lazy('question-update', kwargs = {'pk': question_id})
 
 
 class ChoiceDeleteView(LoginRequiredMixin, DeleteView):
@@ -154,7 +154,7 @@ class ChoiceDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self, *args, **kwargs):
         question_id = self.object.question.id
-        return reverse_lazy('poll_edit', kwargs = {'pk': question_id})
+        return reverse_lazy('question-update', kwargs = {'pk': question_id})
 
 @login_required
 def vote(request, question_id):
@@ -169,7 +169,7 @@ def vote(request, question_id):
         except (KeyError, Choice.DoesNotExist):
             messages.error(request, 'Selecione uma alternativa para votar!')
         
-        except (ValidarionError) as error:
+        except (ValidationError) as error:
             messages.error(request,error.message)
 
         else:

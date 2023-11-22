@@ -14,7 +14,7 @@
             <p>"{{ object.choice_text }}"</p>
             <br />
             <button type="submit" class="btn btn-danger">Confirmar</button>
-            <a href="{% url 'poll_edit' pk=object.question.id %}" class="link-secondary">Cancelar</a>
+            <a href="{% url 'question-update' pk=object.question.id %}" class="link-secondary">Cancelar</a>
         </form>
     </div>
 </div>

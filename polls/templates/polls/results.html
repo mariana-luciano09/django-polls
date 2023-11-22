@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'polls/base.html' %}
 
-{% bolck content %}
+{% block content %}
 <h1>{{ question.question_text }}</h1>
 
     <ul class="list-unstyled">
@@ -20,6 +20,6 @@
         </li>
     {% endfor %}
     </ul>
-    <a href="{% url 'poll_show' pk=question.id %}">Votar novamente?</a>
+    <a href="{% url 'question-detail' pk=question.id %}">Votar novamente?</a>
 {% endblock %}
     
